@@ -16,7 +16,7 @@ This project is about writing some SQL queries on some data from the 2024-25 NBA
 3.  Whenever you run any code on sqlite3, make sure to run the application named "sqlite3".
 
 ### Running Sqlite on Terminal
-1. Open up terminal and type sqlite3 to activate your sqlite environment on your terminal.
+1. Open up the sqlite3 app to run your code on the terminal.
 2. Type in .mode csv
 3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in .import NBA-Data-Analysis-Project-SQL-/NBAA.csv NBAA and press enter. This imports the all the data and and names the table NBA_Table so that you can do your queries later.
 4. Then type in ".mode column" before pressing enter and type ".header on" before pressing enter. This will display the data in a more table-like structure instead of just comma seperated values.
