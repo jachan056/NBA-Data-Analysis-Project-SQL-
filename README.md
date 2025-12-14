@@ -13,6 +13,7 @@ This project is about writing some SQL queries on some data from the 2024-25 NBA
 ### Set-Up Sqlite
 1.  Go to the official sqlite website at https://sqlite.org/download.html to download sqlite for windows. Make sure to pick the zip file with "sqlite-tools-aaa-bbb-ccccccc.zip" that matches your operating system in the source code section.
 2.  Set-up your sqlite by unzipping the folder and going through the installation process by running the sqlite3 file.
+3.  Whenever you run any code on sqlite3, make sure to run the application named "sqlite3".
 
 ### Running Sqlite on Terminal
 1. Open up terminal and type sqlite3 to activate your sqlite environment on your terminal.
