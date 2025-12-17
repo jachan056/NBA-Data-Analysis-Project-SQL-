@@ -18,7 +18,7 @@ This project is about writing some SQL queries on some data from the 2024-25 NBA
 ### Running Sqlite on Terminal
 1. Open up the sqlite3 app to run your code on the terminal.
 2. Type in .mode csv
-3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in .import NBA-Data-Analysis-Project-SQL-/NBAA.csv NBAA and press enter. This imports the all the data and and names the table NBA_Table so that you can do your queries later.
+3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in ".import C:Users\your_username\NBA-Data-Analysis-Project-SQL-\NBAA.csv NBAA" and press enter. This imports the all the data into a table named NBAA for you to perform queries on later.
 4. Then type in ".mode column" before pressing enter and type ".header on" before pressing enter. This will display the data in a more table-like structure instead of just comma seperated values.
 5. To verify if the data was imported correctly, you can do a simple query statement like "SELECT * FROM NBA_Table LIMIT 15;" which displays the first 15 rows of the table.
 6. If the table shows up, then you are ready to do the other queries.
