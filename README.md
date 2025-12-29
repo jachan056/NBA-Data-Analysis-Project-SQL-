@@ -47,6 +47,25 @@ SELECT
 6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. First couple of rows should look something like this:
 7. s
 
+CREATE TABLE veteran_players AS
+SELECT 
+    full_name,
+    player_age,
+    SUM(gp) as total_gp,
+    position,
+    ROUND(CAST(SUM(pts) AS DOUBLE) / SUM(min), 4) as "pts-pm",
+    ROUND(CAST(SUM(reb) AS DOUBLE) / SUM(min), 4) as "reb-pm",
+    ROUND(CAST(SUM(ast) AS DOUBLE) / SUM(min), 4) as "ast-pm",
+    ROUND(CAST(SUM(stl) AS DOUBLE) / SUM(min), 4) as "stl-pm",
+    ROUND(CAST(SUM(blk) AS DOUBLE) / SUM(min), 4) as "blk-pm",
+    ROUND(CAST(SUM(tov) AS DOUBLE) / SUM(min), 4) as "tov-pm"
+FROM better_nba
+WHERE player_age >= 30 
+    AND gp >= 60
+    AND TEAM_ABBREVIATION != 'TOT'  -- Exclude total rows from initial table
+GROUP BY full_name
+HAVING SUM(gp) >= 60;
+
 Pg:
 WITH guard_table AS (
   SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
