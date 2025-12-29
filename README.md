@@ -44,9 +44,8 @@ SELECT
       ROUND(Cast(better_nba.ast AS DOUBLE) / better_nba.min, 4) as "ast-pm", ROUND(Cast(better_nba.stl AS DOUBLE) / better_nba.min, 4) as "stl-pm", 
       ROUND(Cast(better_nba.blk AS DOUBLE) / better_nba.min, 4) as "blk-pm", ROUND(Cast(better_nba.tov AS DOUBLE) / better_nba.min, 4) as "tov-pm"
   FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.gp >= 60;"
-6. Use "" to verify data was inserted properly. First couple of rows should look something like this:
-
-
+6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. First couple of rows should look something like this:
+7. 
 
 ## Data Source and Acknowledgements
 This project uses the nba_api (https://github.com/swar/nba_api/tree/master) library created by Swar Patel to retrieve NBA data utilized in this project. The nba_api is licensed under the MIT License. 
