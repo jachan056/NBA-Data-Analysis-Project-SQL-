@@ -1,5 +1,5 @@
 ## Description
-elab on what the project is actually about.
+This SQL-based NBA data analysis project investigates how veteran players (aged 30 and older with at least 60 games played) performed during the 2024-25 season relative to the league's overall averages. The project creates two core analytical tables: the first calculates league-wide per-minute statistics across key performance categories: including points, rebounds, assists, steals, blocks, and turnovers to establish a baseline of average performance. The second table isolates the per-minute efficiency metrics for qualifying veterans, enabling a direct comparison between this experienced cohort and the league standard. By structuring the data this way, the analysis seeks to reveal whether veteran players maintain, exceed, or fall below league-average efficiency, providing data-driven insights into the impact of age and experience on on-court productivity in professional basketball.
 
 ## Step-By-Step Guide
 ### Prereqs
