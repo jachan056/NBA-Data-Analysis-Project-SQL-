@@ -45,7 +45,74 @@ SELECT
       ROUND(Cast(better_nba.blk AS DOUBLE) / better_nba.min, 4) as "blk-pm", ROUND(Cast(better_nba.tov AS DOUBLE) / better_nba.min, 4) as "tov-pm"
   FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.gp >= 60;"
 6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. First couple of rows should look something like this:
-7. 
+7. s
+
+Pg:
+WITH guard_table AS (
+  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
+  "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
+    FROM better_nba
+    INNER JOIN league_uncs
+    ON better_nba.full_name = league_uncs.full_name
+    WHERE gp >= 60 and (position = 'PG')
+), evaluate_performance AS (
+    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b
+)
+
+SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
+SG:
+WITH guard_table AS (
+  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
+  "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
+    FROM better_nba
+    INNER JOIN league_uncs
+    ON better_nba.full_name = league_uncs.full_name
+    WHERE gp >= 60 and (position = 'SG')
+), evaluate_performance AS (
+    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b
+)
+
+SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
+SF:
+WITH big_table AS (
+  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
+    FROM better_nba
+    INNER JOIN league_uncs
+    ON better_nba.full_name = league_uncs.full_name
+    WHERE gp >= 60 and (position = 'SF')
+), evaluate_performance AS (
+    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
+)
+
+SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
+PF:
+WITH big_table AS (
+  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
+    FROM better_nba
+    INNER JOIN league_uncs
+    ON better_nba.full_name = league_uncs.full_name
+    WHERE gp >= 60 and (position = 'PF')
+), evaluate_performance AS (
+    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
+)
+
+SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
+C:
+WITH big_table AS (
+  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
+    FROM better_nba
+    INNER JOIN league_uncs
+    ON better_nba.full_name = league_uncs.full_name
+    WHERE gp >= 60 and (position = 'C')
+), evaluate_performance AS (
+    SELECT DISTINCT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
+)
+
+SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 
 ## Data Source and Acknowledgements
 This project uses the nba_api (https://github.com/swar/nba_api/tree/master) library created by Swar Patel to retrieve NBA data utilized in this project. The nba_api is licensed under the MIT License. 
