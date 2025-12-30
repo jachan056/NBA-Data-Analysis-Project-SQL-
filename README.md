@@ -91,7 +91,7 @@ WITH guard_table AS (
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-SF:
+Small Forward:
 WITH big_table AS (
   SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
     FROM better_nba
@@ -104,7 +104,7 @@ WITH big_table AS (
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-PF:
+Power Forward:
 WITH big_table AS (
   SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
     FROM better_nba
@@ -117,7 +117,7 @@ WITH big_table AS (
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-C:
+Center:
 WITH big_table AS (
   SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
     FROM better_nba
