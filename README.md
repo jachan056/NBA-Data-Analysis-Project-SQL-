@@ -24,8 +24,11 @@ This SQL-based NBA data analysis project investigates how veteran players (aged 
 6. If the table shows up, then you are ready to do the other queries.
 
 ### Performing the Queries
-1. We are going to create another table, league_wide_minute_stats, which contains the league wide average stats per minute to give us a metric to compare with some of the older players in the league. Use "Create table league_wide_minute_stats ("dummy_name", "league-pts-pm", "league-reb-pm", "league-ast-pm", "league-stl-pm", "league-blk-pm", "league-tov-pm");"
-2. Next, the data will be inserted into the table. The calculations are done only on specific player-stats: points, rebounds, assists, steals, blocks, and turn-overs. Use "INSERT into league_wide_minute_stats ("dummy_name", "league-pts-pm", "league-reb-pm", "league-ast-pm", "league-stl-pm", "league-blk-pm", "league-tov-pm")
+1. We are going to create another table, league_wide_minute_stats, which contains the league wide average stats per minute to give us a metric to compare with some of the older players in the league. 
+Use "Create table league_wide_minute_stats ("dummy_name", "league-pts-pm", "league-reb-pm", "league-ast-pm", "league-stl-pm", "league-blk-pm", "league-tov-pm");"
+
+2. Next, the data will be inserted into the table. The calculations are done only on specific player-stats: points, rebounds, assists, steals, blocks, and turn-overs. 
+Use "INSERT into league_wide_minute_stats ("dummy_name", "league-pts-pm", "league-reb-pm", "league-ast-pm", "league-stl-pm", "league-blk-pm", "league-tov-pm")
 SELECT better_nba.full_name,
   ROUND(CAST(SUM(better_nba.pts) AS DOUBLE) / SUM(better_nba.min), 4) AS 'league-pts-pm', 
   ROUND(CAST(SUM(better_nba.reb) AS DOUBLE) / SUM(better_nba.min), 4) AS 'league-reb-pm', 
@@ -34,37 +37,28 @@ SELECT better_nba.full_name,
   ROUND(CAST(SUM(better_nba.blk) AS DOUBLE) / SUM(better_nba.min), 4) AS 'league-blk-pm', 
   ROUND(CAST(SUM(better_nba.tov) AS DOUBLE) / SUM(better_nba.min), 4) AS 'league-tov-pm'
 FROM better_nba;"
+
 3. Use "SELECT * FROM league_wide_minute_stats;" to check if the data was properly inserted into the table. The dummy name can be ignored, the league-wide statistics are all we need from this table. The table should look something like this. If correct, move on to the next step.
-4. The next table will have the statistics of all the players we are comparing to the league-average. That is all of the players from the 24-25 season who are above the age 30, with 60 or more games played will be considered a "league veteran". Use "Create table league_uncs ("full_name", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm");"
-5. Next, the data will be inserted into the table. The calculations, similar to the previous table, will be done on their points, rebounds, assists, steals, blocks, and turnovers per minute. Use "INSERT INTO league_uncs (
+(images/league_unc_stats.png)
+
+4. The next table will have the statistics of all the players we are comparing to the league-average. That is all of the players from the 24-25 season who are above the age 30, with 60 or more games played will be considered a "league veteran". 
+Use "Create table league_uncs ("full_name", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm");"
+
+5. Next, the data will be inserted into the table. The calculations, similar to the previous table, will be done on their points, rebounds, assists, steals, blocks, and turnovers per minute. 
+Use "INSERT INTO league_uncs (
   "full_name", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
 )
 SELECT 
   DISTINCT better_nba.full_name, ROUND(Cast(better_nba.pts AS DOUBLE) / better_nba.min, 4) as "pts-pm", ROUND(Cast(better_nba.reb AS DOUBLE) / better_nba.min, 4) as "reb-pm", 
       ROUND(Cast(better_nba.ast AS DOUBLE) / better_nba.min, 4) as "ast-pm", ROUND(Cast(better_nba.stl AS DOUBLE) / better_nba.min, 4) as "stl-pm", 
       ROUND(Cast(better_nba.blk AS DOUBLE) / better_nba.min, 4) as "blk-pm", ROUND(Cast(better_nba.tov AS DOUBLE) / better_nba.min, 4) as "tov-pm"
-  FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.gp >= 60;"
+  FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.gp >= 60 and TEAM_ABBREVIATION != 'TOT';"
+  
 6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. First couple of rows should look something like this:
+
+
 7. s
 
-CREATE TABLE veteran_players AS
-SELECT 
-    full_name,
-    player_age,
-    SUM(gp) as total_gp,
-    position,
-    ROUND(CAST(SUM(pts) AS DOUBLE) / SUM(min), 4) as "pts-pm",
-    ROUND(CAST(SUM(reb) AS DOUBLE) / SUM(min), 4) as "reb-pm",
-    ROUND(CAST(SUM(ast) AS DOUBLE) / SUM(min), 4) as "ast-pm",
-    ROUND(CAST(SUM(stl) AS DOUBLE) / SUM(min), 4) as "stl-pm",
-    ROUND(CAST(SUM(blk) AS DOUBLE) / SUM(min), 4) as "blk-pm",
-    ROUND(CAST(SUM(tov) AS DOUBLE) / SUM(min), 4) as "tov-pm"
-FROM better_nba
-WHERE player_age >= 30 
-    AND gp >= 60
-    AND TEAM_ABBREVIATION != 'TOT'  -- Exclude total rows from initial table
-GROUP BY full_name
-HAVING SUM(gp) >= 60;
 
 Pg:
 WITH guard_table AS (
