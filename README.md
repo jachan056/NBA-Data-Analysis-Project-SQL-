@@ -62,6 +62,7 @@ Formula: Σ [(Player_Stat_Per Minute / League_Avg_Per Minute) - 1] for points, r
 This formula is applied accross all 5 positions of basketball: point-guard, shooting-guard, small-forward, power-forward, and center. Performance scores determine the quality of each person's play: Above 0 means the player performs above the league average, while being below 0 means the player performs below the league average and 0 being the player performs at league average.
 
 9. Evaluations for various positions:
+
 Point Guard:
 WITH guard_table AS (
   SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
