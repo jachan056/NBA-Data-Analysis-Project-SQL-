@@ -39,7 +39,8 @@ SELECT better_nba.full_name,
 FROM better_nba;"
 
 3. Use "SELECT * FROM league_wide_minute_stats;" to check if the data was properly inserted into the table. The dummy name can be ignored, the league-wide statistics are all we need from this table. The table should look something like this. If correct, move on to the next step.
-(Images/league_unc_stats.png)
+!(Images/league_unc_stats.png)
+
 
 4. The next table will have the statistics of all the players we are comparing to the league-average. That is all of the players from the 24-25 season who are above the age 30, with 60 or more games played will be considered a "league veteran". 
 Use "Create table league_uncs ("full_name", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm");"
