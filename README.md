@@ -53,8 +53,7 @@ SELECT
       ROUND(Cast(better_nba.blk AS DOUBLE) / better_nba.min, 4) as "blk-pm", ROUND(Cast(better_nba.tov AS DOUBLE) / better_nba.min, 4) as "tov-pm"
   FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.gp >= 60 and TEAM_ABBREVIATION != 'TOT';"
   
-6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. First couple of rows should look something like this:
-
+6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. The dataset should look something like this: [Average Stats Table](Images/league_unc_stats.PNG) If correct, move onto the next step. 
 
 7. s
 
