@@ -55,7 +55,8 @@ SELECT
   
 6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. The dataset should look something like this: [Average Stats Table](Images/league_unc_stats.PNG) If correct, move onto the next step. 
 
-7. Next we use a performance score formula to evaluate peformance of NBA players by utilizing their per-minute statistics for various attributes and comparing it to the league average. 
+7. Next we use a relative performance score to evaluate NBA players by comparing their per-minute production to league averages across five key statistical categories: points, rebounds, assists, steals, blocks. 
+Formula: Σ [(Player_Stat_Per Minute / League_Avg_Per Minute) - 1] for points, rebounds, assists, steals, blocks
 
 
 Pg:
