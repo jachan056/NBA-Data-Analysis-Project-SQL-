@@ -18,7 +18,7 @@ This SQL-based NBA data analysis project investigates how veteran players (aged 
 ### Running Sqlite on Terminal
 1. Open up the sqlite3 app to run your code on the terminal.
 2. Type in .mode csv
-3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in ".import C:\Users\your_username\NBA-Data-Analysis-Project-SQL-\NBAA.csv better_nba" and press enter. This imports the all the data into a table named better_nba for you to perform queries on later.
+3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in ".import C:\Users\your_username\NBA-Data-Analysis-Project-SQL-\NBAA.csv better_nba" and press enter. This imports the all the data into a table named better_nba for you to perform queries on later. If the previous codeline gives an error you can try ".import NBA-Data-Analysis-Project-SQL-/NBAA.csv better_nba" instead.
 4. Then type in ".mode column" before pressing enter and type ".header on" before pressing enter. This will display the data in a more table-like structure instead of just comma seperated values.
 5. To verify if the data was imported correctly, you can do a simple query statement like "SELECT * FROM better_nba LIMIT 15;" which displays the first 15 rows of the table.
 6. If the table shows up, then you are ready to do the other queries.
