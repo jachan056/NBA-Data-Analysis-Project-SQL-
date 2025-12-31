@@ -19,7 +19,8 @@ This SQL-based NBA data analysis project investigates how veteran players (aged 
 1. Open up the sqlite3 app to run your code on the terminal.
 2. Type in .mode csv
 3. Make sure the downloaded folder is in your Users/your_username folder before proceeding. Type in ".import C:\Users\your_username\NBA-Data-Analysis-Project-SQL-\NBAA.csv NBAA" and press enter. This imports the all the data into a table named better_nba for you to perform queries on later. If the previous codeline gives an error you can try ".import NBA-Data-Analysis-Project-SQL-/NBAA.csv NBAA" instead.
-4. Since the column, gp (games played) is stored as a string rather than an integer, we will have to create a newly, corrected table that has gp stored as an integer so that we can properly filter out players later on. First, do ""
+4. Since the column, gp (games played) is stored as a string rather than an integer, we will have to create a newly, corrected table that has gp stored as an integer so that we can properly filter out players later on. First, do "CREATE TABLE better_nba AS SELECT *, CAST(gp AS INT) AS games_played FROM NBAA;" This creates a new table that is an exact copy of the previous table we imported, where a new column, games_played is the gp column but converted into numbers instead of being stored as a string.
+5. Next, we use code "ALTER TABLE better_nba DROP COLUMN gp;" to get rid of the duplicate games played column.
 6. Then type in ".mode column" before pressing enter and type ".header on" before pressing enter. This will display the data in a more table-like structure instead of just comma seperated values.
 7. To verify if the data was imported correctly, you can do a simple query statement like "SELECT * FROM better_nba LIMIT 15;" which displays the first 15 rows of the table.
 8. If the table shows up, then you are ready to do the other queries.
