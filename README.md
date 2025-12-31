@@ -61,21 +61,17 @@ Formula: Σ [(Player_Stat_Per Minute / League_Avg_Per Minute) - 1] for points, r
 
 This formula is applied accross all 5 positions of basketball: point-guard, shooting-guard, small-forward, power-forward, and center. Performance scores determine the quality of each person's play: Above 0 means the player performs above the league average, while being below 0 means the player performs below the league average and 0 being the player performs at league average.
 
-9. Evaluations for various positions:
-
-Point Guard:
-WITH guard_table AS (
-  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
-  "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
-    FROM better_nba
-    INNER JOIN league_uncs
-    ON better_nba.full_name = league_uncs.full_name
-    WHERE gp >= 60 and (position = 'PG')
-), evaluate_performance AS (
-    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b
-)
+9. Evaluations for point guards:
+Code: WITH guard_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'PG')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
+
+
+
+
+
+
+
 
 Shooting Guard:
 WITH guard_table AS (
