@@ -57,8 +57,8 @@ SELECT
 
 7. Next we use a relative performance score to evaluate NBA players by comparing their per-minute production to league averages across five key statistical categories. Formula: Σ [(Player_Stat_Per Minute / League_Avg_Per Minute) - 1] for points, rebounds, assists, steals, blocks. This formula is applied accross all 5 positions of basketball: point-guard, shooting-guard, small-forward, power-forward, and center. Performance scores determine the quality of each person's play: Above 0 means the player performs above the league average, while being below 0 means the player performs below the league average and 0 being the player performs at league average.
 
-## Evaluations for various Positions:
-### Point Guards
+## Evaluations for various Positions
+### Point Guard
 Code: WITH guard_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'PG')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
 
@@ -66,63 +66,37 @@ Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
 Analysis: ...
 
-
-
-
-
-
-Shooting Guard:
-WITH guard_table AS (
-  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", 
-  "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
-    FROM better_nba
-    INNER JOIN league_uncs
-    ON better_nba.full_name = league_uncs.full_name
-    WHERE gp >= 60 and (position = 'SG')
-), evaluate_performance AS (
-    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b
-)
+### Shooting Guard
+Code: WITH guard_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'SG')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-Small Forward:
-WITH big_table AS (
-  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
-    FROM better_nba
-    INNER JOIN league_uncs
-    ON better_nba.full_name = league_uncs.full_name
-    WHERE gp >= 60 and (position = 'SF')
-), evaluate_performance AS (
-    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
-)
+Analysis: ...
+
+### Small Forward
+Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'SF')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-Power Forward:
-WITH big_table AS (
-  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
-    FROM better_nba
-    INNER JOIN league_uncs
-    ON better_nba.full_name = league_uncs.full_name
-    WHERE gp >= 60 and (position = 'PF')
-), evaluate_performance AS (
-    SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
-)
+Analysis: ...
+
+### Power Forward
+Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'PF')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
 
-Center:
-WITH big_table AS (
-  SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm"
-    FROM better_nba
-    INNER JOIN league_uncs
-    ON better_nba.full_name = league_uncs.full_name
-    WHERE gp >= 60 and (position = 'C')
-), evaluate_performance AS (
-    SELECT DISTINCT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b
-)
+Analysis: ...
+
+### Center
+Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, gp, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE gp >= 60 and (position = 'C')), evaluate_performance AS (SELECT full_name, player_age, gp, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
 SELECT DISTINCT full_name, player_age, gp, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+
 Table: [League Average Table](Images/league_avg_unc_stats.PNG)
+
+Analysis: ...
 
 Last Commentary:
 s
