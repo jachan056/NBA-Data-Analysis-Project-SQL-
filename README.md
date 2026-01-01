@@ -76,6 +76,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 Table: [Shooting Guard Table](Images/ShootingGuard.jpg)
 
 Analysis: ...
+use SELECT full_name, Player_Age, games_played, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT, FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS FROM better_nba WHERE games_played >= 60 AND Player_Age >= 30 AND Position = 'SG'; to analyze all positions.
 #
 
 ### Small Forward's Evaluation
