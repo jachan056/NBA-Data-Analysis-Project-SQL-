@@ -66,7 +66,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Point Guard Table](Images/PointGuard.jpg)
 
-Analysis: ...
+Analysis: Despite almost half of the list being close to the age of 40, many of these players still perform near the league average, or even far exceeds it. Players like TJ McoConnell and Westbrook are far superior to the league average, emphasizing their skill and performance even more. However, something that is not highlighted is the true scoring capability and contribution of these individual players. Aside from a handful of players, all of the others are bench players, meaning they played limited minutes and are oftentimes well rested before entering the court and are more likely to play against other bench players, that are far less demanding. Starting guards like VanVleet and Curry are up against stronger match-ups, giving them a much harder time in contributing to rebounds, points, assists, etc. Additionally, a key factor no other player aside from Curry possesses, is his gravity on the court. Due to his prior reputation of being an absolute threat anywhere on the court, with or without the ball, defenders are invested in stopping him, which creates many openings for his other teammates. Teams would rather give up open-looks and buckets than to give Curry a chance to get his shot off. In retrospect, age is most definitely not a limiting factor to a player's performance, and if anything it is their experience that allows them to perform on par with much younger players, not through brute force athleticism, but through a more strategic approach.
 #
 
 ### Shooting Guard's Evaluation
