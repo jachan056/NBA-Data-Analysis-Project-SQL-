@@ -62,7 +62,7 @@ SELECT
 
 ### Point Guard's Evaluation
 Code: WITH guard_table AS (SELECT DISTINCT better_nba.full_name, player_age, games_played, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE (position = 'PG')), evaluate_performance AS (SELECT full_name, player_age, games_played, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b)
-SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance WHERE games_played >= 60 ORDER BY veteran_rank;
 
 Table: [Point Guard Table](Images/PointGuard.jpg)
 
@@ -71,7 +71,7 @@ Analysis: Despite almost half of the list being close to the age of 40, many of 
 
 ### Shooting Guard's Evaluation
 Code: WITH guard_table AS (SELECT DISTINCT better_nba.full_name, player_age, games_played, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE (position = 'SG')), evaluate_performance AS (SELECT full_name, player_age, games_played, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM guard_table as a, league_wide_minute_stats as b)
-SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance WHERE games_played >= 60 ORDER BY veteran_rank;
 
 Table: [Shooting Guard Table](Images/ShootingGuard.jpg)
 
@@ -81,7 +81,7 @@ use SELECT full_name, Player_Age, games_played, FGM, FGA, FG_PCT, FG3M, FG3A, FG
 
 ### Small Forward's Evaluation
 Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, games_played, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE (position = 'SF')), evaluate_performance AS (SELECT full_name, player_age, games_played, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
-SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance WHERE games_played >= 60 ORDER BY veteran_rank;
 
 Table: [Small Forward Table](Images/SmallForward.jpg)
 
@@ -90,7 +90,7 @@ Analysis: ...
 
 ### Power Forward's Evaluation
 Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, games_played, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE (position = 'PF')), evaluate_performance AS (SELECT full_name, player_age, games_played, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
-SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance WHERE games_played >= 60 ORDER BY veteran_rank;
 
 Table: [Power Forward Table](Images/PowerForward.jpg)
 
@@ -99,14 +99,14 @@ Analysis: ...
 
 ### Center's Evaluation
 Code: WITH big_table AS (SELECT DISTINCT better_nba.full_name, player_age, games_played, position, "height (in)", "wing span (in)", "pts-pm", "reb-pm", "ast-pm", "stl-pm", "blk-pm", "tov-pm" FROM better_nba INNER JOIN league_uncs ON better_nba.full_name = league_uncs.full_name WHERE (position = 'C')), evaluate_performance AS (SELECT full_name, player_age, games_played, position, ROUND(((a."pts-pm" / b."league-pts-pm") - 1) + ((a."reb-pm" / b."league-reb-pm") - 1) + ((a."ast-pm" / b."league-ast-pm") - 1) + ((a."stl-pm" / b."league-stl-pm") - 1) + ((a."blk-pm" / b."league-blk-pm") - 1), 4) AS performance_score FROM big_table as a, league_wide_minute_stats as b)
-SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance ORDER BY veteran_rank;
+SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() OVER (ORDER BY performance_score DESC) AS veteran_rank FROM evaluate_performance WHERE games_played >= 60 ORDER BY veteran_rank;
 
 Table: [Center Table](Images/Center.jpg)
 
 Analysis: ...
 
 Last Commentary:
-TRY to build a super team with over 30's players, and under 30's players. 
+TRY to build a super team with over 30's players, and under 30's players. Maybe you can now rate playres performances from different ages like mj vs lebron, curry vs magic, etc. but with peak seasons.
 #
 
 ## Data Source and Acknowledgements
