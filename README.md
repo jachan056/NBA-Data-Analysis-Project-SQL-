@@ -53,7 +53,7 @@ SELECT
   DISTINCT better_nba.full_name, ROUND(Cast(better_nba.pts AS DOUBLE) / better_nba.min, 4) as "pts-pm", ROUND(Cast(better_nba.reb AS DOUBLE) / better_nba.min, 4) as "reb-pm", 
       ROUND(Cast(better_nba.ast AS DOUBLE) / better_nba.min, 4) as "ast-pm", ROUND(Cast(better_nba.stl AS DOUBLE) / better_nba.min, 4) as "stl-pm", 
       ROUND(Cast(better_nba.blk AS DOUBLE) / better_nba.min, 4) as "blk-pm", ROUND(Cast(better_nba.tov AS DOUBLE) / better_nba.min, 4) as "tov-pm"
-  FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.games_played >= 60 and TEAM_ABBREVIATION != 'TOT';"
+  FROM better_nba WHERE better_nba.player_age >= 30 and better_nba.games_played >= 60;"
   
 6. Use "SELECT * FROM league_uncs;" to verify data was inserted properly. The dataset should look something like this: [Average Stats Table](Images/league_unc_stats.PNG) If correct, move onto the next step. 
 
