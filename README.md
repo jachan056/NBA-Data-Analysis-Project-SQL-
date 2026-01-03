@@ -75,8 +75,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Shooting Guard Table](Images/ShootingGuard.jpg)
 
-Analysis: ...
-use SELECT full_name, Player_Age, games_played, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT, FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS FROM better_nba WHERE games_played >= 60 AND Player_Age >= 30 AND Position = 'SG'; to analyze all positions.
+Analysis: Overall, most of the more traditional shooting-guards in the list aside from Derrick White, GPII, and James Harden all score lower because their main focus is scoring and offense, while contributing less to playmaking, rebounding, and defensive categories. The lack of flexibility in their playstyles greatly hinder their value as a player, and even athleticism/individual talent cannot help these shooting guards as seen with Zach Lavine, who is athletic and only 30 years old, but still in the negatives for performance score. This is why championship contending teams prioritize versatile guards, guards that can both play make and score, as well as contribute to the floor defensively. The goal is to be well-rounded and contribute to the most amount of winning factors.
 #
 
 ### Small Forward's Evaluation
