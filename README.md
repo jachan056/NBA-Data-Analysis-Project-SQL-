@@ -75,7 +75,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Shooting Guard Table](Images/ShootingGuard.jpg)
 
-Analysis: Overall, most of the more traditional shooting-guards in the list aside from Derrick White, GPII, and James Harden all score lower because their main focus is scoring and offense, while contributing less to playmaking, rebounding, and defensive categories. The lack of flexibility in their playstyles greatly hinder their value as a player, and even athleticism/individual talent cannot help these shooting guards as seen with Zach Lavine, who is athletic and only 30 years old, but still in the negatives for performance score. This is why championship contending teams prioritize versatile guards, guards that can both play make and score, as well as contribute to the floor defensively. The goal is to be well-rounded and contribute to the most amount of winning factors.
+Analysis: Aside from James Harden and Derrick White, most of the older shooting-guards do in fact struggle with their performance in the league as they age, as seen with the lower performance scores being well below 0. However, most of the more traditional shooting-guards in the list aside from Derrick White, GPII, and James Harden all score lower not from age, but because their main focus is scoring and offense, while contributing less to playmaking, rebounding, and defensive categories. The lack of flexibility in their playstyles greatly hinder their value as a player, and even athleticism/individual talent cannot help these shooting guards as seen with Zach Lavine, who is athletic and only 30 years old, but still in the negatives for performance score. This is why championship contending teams prioritize versatile guards, guards that can both play make and score, as well as contribute to the floor defensively. The goal is to be well-rounded and contribute to the most amount of winning factors.
 #
 
 ### Small Forward's Evaluation
@@ -84,7 +84,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Small Forward Table](Images/SmallForward.jpg)
 
-Analysis: ...
+Analysis: With a few exceptions, the data shows consistency accross the majority of small-forwards in terms of their performances, demonstrating that they are all flexible players that have well-rounded contributions to their team's success. Regardless of age, all players contribute to winning similar to the league average, meaning they are already the versatile players their team needs them to be. Players like Demar DeRozan however, who were once dominating scorers, scored lower than a player like Josh Hart due to the lack of contribution in rebounding, assisting, and defense. This emphasizes the importance of versatility in order to preserve performance for most if not all NBA players, as the league meta shifts.
 #
 
 ### Power Forward's Evaluation
