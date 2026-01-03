@@ -84,7 +84,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Small Forward Table](Images/SmallForward.jpg)
 
-Analysis: With a few exceptions, the data shows consistency accross the majority of small-forwards in terms of their performances, demonstrating that they are all flexible players that have well-rounded contributions to their team's success. Regardless of age, all players contribute to winning similar to the league average, meaning they are already the versatile players their team needs them to be. Players like Demar DeRozan however, who were once dominating scorers, scored lower than a player like Josh Hart due to the lack of contribution in rebounding, assisting, and defense. This emphasizes the importance of versatility in order to preserve performance for most if not all NBA players, as the league meta shifts.
+Analysis: With a few exceptions, the data shows consistency across the majority of small-forwards in terms of their performances, demonstrating that they are all flexible players that have well-rounded contributions to their team's success. Regardless of age, all players contribute to winning similar to the league average, meaning they are already the versatile players their team needs them to be. Players like Demar DeRozan however, who were once dominating scorers, scored lower than a player like Josh Hart due to the lack of contribution in rebounding, assisting, and defense. This emphasizes the importance of versatility in order to preserve performance for most if not all NBA players, as the league meta shifts.
 #
 
 ### Power Forward's Evaluation
@@ -93,7 +93,8 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Power Forward Table](Images/PowerForward.jpg)
 
-Analysis: ...
+Analysis: The table emphasizes that age plays absolutely no role in dominance in the league with the top 5 power forwards performing well above the league average. These top players perform at high levels in multiple categories in addition to scoring, with Giannis and Lebron excelling at every single category. However being good at everything just is not enough, seen with Pascal Siakam, the gap between good (Siakam) and elite (Giannis) is nearly 3 points in the performance metric, emphasizing the impact of elite power forwards. Another thing is that out of the top 5 forwards, 4 of them played for 2000+ minutes, demonstrating their teams absolutely could not win without them on the floor. 
+use SELECT full_name, Player_Age, games_played, FGM, FGA, FG_PCT, FG3M, FG3A, FG3_PCT, FTM, FTA, FT_PCT, OREB, DREB, REB, AST, STL, BLK, TOV, PF, PTS FROM better_nba WHERE games_played >= 60 AND Player_Age >= 30 AND Position = 'SF'; to analyze all positions.
 #
 
 ### Center's Evaluation
@@ -102,10 +103,7 @@ SELECT DISTINCT full_name, player_age, games_played, performance_score, RANK() O
 
 Table: [Center Table](Images/Center.jpg)
 
-Analysis: ...
-
-Last Commentary:
-TRY to build a super team with over 30's players, and under 30's players. Maybe you can now rate playres performances from different ages like mj vs lebron, curry vs magic, etc. but with peak seasons.
+Analysis: Age is not the limiting factor to center performance as most centers do not rely on their atheleticism, but rather their sheer height and weight. The data shows that veteran centers dominate in fields such as rebounding and shot-blocking, as well as scoring at very high percentages since they mostly shoot within the arc (super close to the hoop). Unlike shooting guards, centers do not need to excel in scoring at an elite level to have a dominating performance score, as they are elite in terms of both rebounding and defense already. With almost every center above 30 performing well above the league average, we can observe a shift towards versatile big men contributing to team victories heavily instead of the guard-dominated era in the 2010s where point guards and shooting guards score 30+ points a night.
 #
 
 ## Data Source and Acknowledgements
