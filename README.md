@@ -108,3 +108,6 @@ Analysis: Age is not the limiting factor to center performance as most centers d
 
 ## Data Source and Acknowledgements
 This project uses the nba_api (https://github.com/swar/nba_api/tree/master) library created by Swar Patel to retrieve NBA data utilized in this project. The nba_api is licensed under the MIT License. 
+
+## Disclaimer
+This project utilizes data obtained via the nba_api. This analysis is for educational purposes only and is not affiliated with or endorsed by the NBA.
